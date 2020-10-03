@@ -2,12 +2,13 @@ $(document).ready(function () {
 
     const dt = new Date();
     const date = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
-    
-    $("#addBtn").on("click", function(){    
+    $("#inputDate").val(date)
 
-        const data = {
-            id: "123456ok",
-            date,
+    $("#frm").on("submit", function(e){
+        e.preventDefault();
+
+        const data = {            
+            date: $("#inputDate").val(),
             info: $("#inputBox").val()
         }
     
@@ -19,8 +20,7 @@ $(document).ready(function () {
                 location.reload();
             }
         })
-    });
 
-
-
+    });    
+    
 });
