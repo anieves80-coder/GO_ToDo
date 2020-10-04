@@ -9,3 +9,8 @@
 .hlite:hover {
     background-color: lightgrey;
 }
+
+.curs {
+    font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+}

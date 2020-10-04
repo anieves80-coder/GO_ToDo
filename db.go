@@ -41,7 +41,7 @@ func init() {
 	collection = client.Database("gotodo").Collection("todolist")
 }
 
-func insertDB(data Data) string {
+func insertDB(data AddData) string {
 	_, err := collection.InsertOne(context.TODO(), data)
 	if err != nil {
 		return "err"
@@ -70,4 +70,29 @@ func getAll() []DBres {
 	res.Close(context.TODO())
 
 	return results
+}
+
+func deleteRec(id string) {
+	idPrimitive, _ := primitive.ObjectIDFromHex(id)
+	collection.DeleteOne(context.TODO(), bson.M{"_id": idPrimitive})
+}
+
+func updateDb(data Data) string {
+	idPrimitive, _ := primitive.ObjectIDFromHex(data.ID)
+	filter := bson.D{{"_id", idPrimitive}}
+	//bson.D = slice
+	//bson.M = map
+	update := bson.M{
+		"$set": bson.M{
+			"date":        data.Date,
+			"description": data.Description,
+		},
+	}
+
+	_, err := collection.UpdateOne(context.TODO(), filter, update)
+	if err != nil {
+		return "err"
+	}
+
+	return "ok"
 }

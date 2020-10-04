@@ -10,6 +10,7 @@
     <title>Go_ToDo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 
@@ -27,19 +28,27 @@
                 </div>
                 <div class="col-auto my-1">
                     <button type="submit" class="btn btn-primary" id="addBtn">ADD</button>
+                    <button type="button" class="btn btn-danger" id="btnCancel" hidden>CANCEL</button>
                 </div>
             </div>
         </form>
         <div id="results">  
             <div class="row">
-                <div class="col-8 font-weight-bold font-italic">Task</div>
-                <div class="col-4 font-weight-bold">Due By</div>
+                <div class="col-9 font-weight-bold font-italic">Task</div>
+                <div class="col-3 font-weight-bold">Due By</div>
             </div>
             {{range $val := .}}
-                <div class="row border mb-1 hlite" id="{{$val.StringID}}">
-                    <div class="col-8 font-italic">{{$val.Description}}</div>
-                    <div class="col-2">{{$val.Date}}</div>
-                    <div class="col-2"><i class="fas fa-pencil-alt mr-3"></i> | <i class="fas fa-trash-alt ml-3"></i></div>
+                <div class="row border mb-1 hlite">
+                    <div class="col-8 curs">{{$val.Description}}</div>
+                    <div class="col-2 text-right mt-2">{{$val.Date}}</div>
+                    <div class="col text-right">
+                        <button class="btn btn-link btn-edit" data-passed_id="{{$val.StringID}}" data-passed_desc="{{$val.Description}}" data-passed_d="{{$val.Date}}">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button> | 
+                        <button class="btn btn-link btn-del" data-passed_id="{{$val.StringID}}">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
                 </div>
             {{end}}            
         </div>
