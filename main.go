@@ -13,9 +13,8 @@ var tpl *template.Template
 //Data struct for data coming in from the clients ajax request for modification
 //and getting the ID
 type Data struct {
-	ID          string `json:"id"`
-	Date        string `json:"date"`
-	Description string `json:"info"`
+	ID   string `json:"id"`
+	Data AddData
 }
 
 //AddData struct for data coming in from the clients ajax request and add it

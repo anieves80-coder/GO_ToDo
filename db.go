@@ -84,8 +84,8 @@ func updateDb(data Data) string {
 	//bson.M = map
 	update := bson.M{
 		"$set": bson.M{
-			"date":        data.Date,
-			"description": data.Description,
+			"date":        data.Data.Date,
+			"description": data.Data.Description,
 		},
 	}
 
